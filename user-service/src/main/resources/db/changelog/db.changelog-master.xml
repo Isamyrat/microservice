@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="CREATE_ROLE_TABLE" author="gurbanow">
+        <createTable tableName="ROLE">
+            <column name="ID" type="int">
+                <constraints primaryKey="true" primaryKeyName="PK_USERS_ID" nullable="false"/>
+            </column>
+            <column name="NAME" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="CREATE_USER_TABLE" author="gurbanow">
+        <createTable tableName="USERENTITY">
+            <column name="ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="USERNAME" type="varchar(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="PASSWORD" type="varchar(70)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ROLE_ID" type="int">
+                <constraints references="ROLE(ID)" foreignKeyName="FK_ROLE_ID" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="INSERT_DEFAULT_ROLES" author="gurbanow">
+        <sql>
+            INSERT INTO ROLE (ID, NAME)
+            VALUES (1, 'ADMIN')
+        </sql>
+    </changeSet>
+
+    <changeSet id="INSERT_DEFAULT_ADMIN" author="gurbanow">
+        <sql>
+            INSERT INTO USERENTITY (ID, USERNAME, PASSWORD, ROLE_ID)
+            VALUES (1, 'root', '$2a$10$E6k9MZd.geehGpTB2ZwcQOttxeA6hi5bwekq.ND6xpDgp23BMJnAO',1)
+        </sql>
+    </changeSet>
+
+
+</databaseChangeLog>
