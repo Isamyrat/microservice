@@ -45,6 +45,15 @@
             VALUES (1, 'root', '$2a$10$E6k9MZd.geehGpTB2ZwcQOttxeA6hi5bwekq.ND6xpDgp23BMJnAO',1)
         </sql>
     </changeSet>
+    <changeSet id="INSERT_USER_ROLE_AND_ONE_USER" author="gurbanow">
+        <sql>
+            INSERT INTO ROLE (ID, NAME)     VALUES (2, 'USER')
 
+        </sql>
+        <sql>
+            INSERT INTO USERENTITY (ID, USERNAME, PASSWORD, ROLE_ID)
+            VALUES (2, 'user_root', '$2a$10$E6k9MZd.geehGpTB2ZwcQOttxeA6hi5bwekq.ND6xpDgp23BMJnAO',2)
+        </sql>
+    </changeSet>
 
 </databaseChangeLog>

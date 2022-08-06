@@ -3,6 +3,9 @@ server:
 spring:
     application:
         name: user-service
+    mvc:
+        converters:
+            preferred-json-mapper: gson
     datasource:
         username: isa_user
         password: isa_password
@@ -13,6 +16,7 @@ spring:
             physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     liquibase:
         change-log: classpath:/db/changelog/db.changelog-master.xml
+    gson:
+        serialize-nulls: false
 jwt:
     expiration-time: 300000000
-    SECRET: megasecretkey

@@ -12,14 +12,14 @@ import org.springframework.util.StringUtils;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
+import static com.example.util.ConstantsHolder.SECRET;
+
 
 @Component
 public class JwtUtils {
 
     @Value("${jwt.expiration-time}")
     private int expirationTime;
-    @Value("${jwt.SECRET}")
-    private String SECRET;
     public static final String BEARER_PREFIX = "Bearer ";
 
     public String getJwtToken(String username) {

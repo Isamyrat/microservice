@@ -1,0 +1,3 @@
+INSERT INTO USERENTITY (ID, USERNAME, PASSWORD, ROLE_ID)
+VALUES (6, 'admin_test', '$2a$10$E6k9MZd.geehGpTB2ZwcQOttxeA6hi5bwekq.ND6xpDgp23BMJnAO',  1);
+

@@ -2,7 +2,6 @@ package com.example.service.impl;
 
 import com.example.dto.JwtRequestDto;
 import com.example.dto.JwtResponseDto;
-import com.example.entity.UserEntity;
 import com.example.exception.BadRequestException;
 import com.example.jwt.JwtUtils;
 import com.example.service.AuthenticationService;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -33,10 +31,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new BadRequestException(USER_NOT_FOUND, e);
         }
         return new JwtResponseDto(jwtUtils.getJwtToken(jwtRequest.getUsername()));
-    }
-
-    public UserEntity getPrincipal() {
-        return (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     private void validateLoginRequest(JwtRequestDto jwtRequest) {
